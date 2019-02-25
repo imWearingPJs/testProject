@@ -9,6 +9,7 @@
 import UIKit
 import SwiftyJSON
 import SDWebImage
+import SVProgressHUD
 
 struct Offer {
     //let id: String
@@ -49,6 +50,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     func readJSONFromFile(fileName: String) {
+        SVProgressHUD.show()
         if let path = Bundle.main.path(forResource: fileName, ofType: "json") {
             do {
                 let fileUrl = URL(fileURLWithPath: path)
@@ -63,7 +65,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                         offers.append(offer)
                     }
                     print(offers.count)
-                    collectionView.reloadData()
+                    //collectionView.reloadData()
+                    SVProgressHUD.dismiss()
                 }
                 
             } catch {

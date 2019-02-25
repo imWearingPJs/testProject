@@ -8,5 +8,6 @@ target 'testProject' do
   # Pods for testProject
 pod 'SwiftyJSON'
 pod 'SDWebImage'
+pod 'SVProgressHUD'
 
 end
