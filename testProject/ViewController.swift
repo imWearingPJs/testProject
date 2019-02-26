@@ -14,10 +14,10 @@ import SVProgressHUD
 struct Offer {
     //let id: String
     let url: String?
+    let currentValue : String?
     let name: String?
 //    let description: String
 //    let terms: String
-//    let currentValue : String
 }
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -44,8 +44,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionViewCell
         let imageUrl = URL(string: offers[indexPath.item].url ?? "")
         let offerName = offers[indexPath.item].name ?? ""
+        let currentValue = offers[indexPath.item].currentValue ?? ""
+        print(indexPath)
         print(imageUrl as Any)
         print(offerName)
+        print(currentValue)
         cell.offerImage?.sd_setImage(with: imageUrl)
         cell.offerName?.text = offerName
 
@@ -62,6 +65,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                     for item in json! {
                         let offer = Offer(
                             url: item["url"] as? String,
+                            currentValue: item["current_value"] as? String,
                             name: item["name"] as? String
                         )
                         offers.append(offer)
